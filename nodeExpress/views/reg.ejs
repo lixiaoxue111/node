@@ -1,0 +1,21 @@
+<meta charset="utf-8">
+<form action="/reg" method="post">
+    用户名:<input type="text" name="username" id="use"><br />
+    密码:<input type="password" name="pass"><br />
+    <input type="submit" name="sub" value="注册">
+</form>
+<script src="javascripts/jquery-1.12.4.js"></script>
+<script>
+    $("#use").blur(function () {
+        var val=$(this).val();
+        $.post('/checkname','username='+val,function (data) {
+            /*if (data=='success') {
+                $("#use").after('<span>重名</span>');
+            }*/
+
+            console.log(typeof (data));
+            var strobj=JSON.parse();
+            console.log(strobj);
+        },'text')
+    })
+</script>
