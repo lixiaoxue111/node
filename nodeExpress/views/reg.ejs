@@ -13,9 +13,9 @@
                 $("#use").after('<span>重名</span>');
             }*/
 
-            console.log(typeof (data));
-            var strobj=JSON.parse();
-            console.log(strobj);
+            console.log(typeof(data));
+            var strobj=eval('('+data+')');
+            console.log(typeof(strobj));
         },'text')
     })
 </script>
