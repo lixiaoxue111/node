@@ -2,7 +2,7 @@ var crypto=require('crypto'); // 加密
 var User_modules=require('../models/user_modules.js');
 
 exports.reg=function (req,res,next) {
-    console.log('reg----');
+    //console.log('reg----');
     res.render('reg'); // 渲染reg页面
 };
 
@@ -15,8 +15,11 @@ exports.do_reg=function (req,res,next) {
     var mpass=xmd5(pass);
     console.log(mpass);
 
-    User_modules.sel_data(function (data) {
+    User_modules.sel_data(name,pass,function (erros,data) {
         console.log(data);
+        if(data.affectedRows==1){
+            res.redirect('/login');
+        }
     })
 };
 
@@ -29,15 +32,19 @@ function xmd5(str) {  // 加密
 
 exports.checkname=function (req,res,next) {
     var name=req.body.username;
-    if (name=='11'){
+   /* if (name=='11'){
         //res.send('success');
-        var str='{"id":1,"name":xiaoming"}';
-        res.send(str);
+        //var str='{"id":1,"name":xiaoming"}';
+       // res.send(str);
     } else {
         res.send('error');
-    }
+    }*/
+
 };
 
+exports.login=function (req,res,next) {
+    res.render('login');
+};
 
 
 
